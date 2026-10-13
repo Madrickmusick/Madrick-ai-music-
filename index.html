@@ -1,2 +1,83 @@
-# Madrick-ai-music-
-Madrick ai studio-song idea lyrics 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Madrick AI Music Studio</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#101323;color:white}
+header{text-align:center;padding:28px 15px;background:#20294a}
+h1{margin:0;color:#75e5d2}
+main{max-width:600px;margin:25px auto;padding:20px}
+.card{background:#20243a;padding:22px;border-radius:18px}
+label{display:block;margin-top:15px}
+input,select,textarea,button{width:100%;padding:13px;margin-top:8px;
+border-radius:9px;border:1px solid #505977;font-size:16px}
+input,select,textarea{background:#121729;color:white}
+button{background:#75e5d2;color:#101323;font-weight:bold;border:0}
+textarea{min-height:220px}
+.small{text-align:center;color:#c5cbe0;font-size:14px}
+</style>
+</head>
+<body>
+<header>
+<h1>🎵 Madrick AI Music Studio</h1>
+<p>Create your next African hit!</p>
+</header>
+<main>
+<div class="card">
+<h2>🎤 Song Creator</h2>
+<p>Build a song idea, lyrics outline and music prompt.</p>
+<label for="title">Song title</label>
+<input id="title" placeholder="e.g. My African Queen">
+<label for="style">Music style</label>
+<select id="style">
+<option>Zambian Afrobeats</option>
+<option>Zamrock</option>
+<option>Afro-pop</option>
+<option>Gospel</option>
+<option>R&B</option>
+<option>Amapiano</option>
+<option>Hip-hop</option>
+</select>
+<label for="language">Language</label>
+<select id="language">
+<option>English and Nyanja</option>
+<option>English</option>
+<option>Nyanja</option>
+<option>Bemba</option>
+<option>English and Bemba</option>
+</select>
+<button onclick="makeSong()">Create Song Idea</button>
+<label for="result">Your song draft</label>
+<textarea id="result" placeholder="Your song idea will appear here..." readonly></textarea>
+<button onclick="copySong()">Copy Song Draft</button>
+<p class="small">Madrick AI Music Studio · Made for African music creators</p>
+</div>
+</main>
+<script>
+function makeSong(){
+const title=document.getElementById('title').value.trim();
+const style=document.getElementById('style').value;
+const language=document.getElementById('language').value;
+if(!title){document.getElementById('result').value='Please enter a song title.';return;}
+document.getElementById('result').value=
+'Song Title: '+title+
+'\nMusic Style: '+style+
+'\nLanguage: '+language+
+'\n\nINTRO\nSet the mood and introduce the story.\n\nVERSE 1\nDescribe the story behind '+title+'.\n\nCHORUS\nWrite a catchy, memorable hook about '+title+'.\n\nVERSE 2\nDevelop the story with fresh details.\n\nBRIDGE\nAdd an emotional change or a new perspective.\n\nOUTRO\nFinish with a memorable closing line.\n\nPRODUCTION PROMPT\nCreate an original '+style+' song with vocals in '+language+
+', a memorable melody, warm bass, polished percussion and a catchy chorus.';
+}
+function copySong(){
+const result=document.getElementById('result');
+if(!result.value){result.value='Create a song idea first.';return;}
+result.select();
+if(navigator.clipboard){navigator.clipboard.writeText(result.value).then(()=>alert('Song draft copied!')).catch(()=>alert('Select and copy your draft manually.'));}
+else{alert('Select and copy your draft manually.');}
+}
+</script>
+</body>
+</html>
+
